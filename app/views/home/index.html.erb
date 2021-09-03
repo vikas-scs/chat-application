@@ -1,0 +1,52 @@
+<% if user_signed_in? %>
+<div class="featured-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>Add Post</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="featured-page">
+      <div class="container">
+        <center>
+          <%= form_tag(add_post_path, :method => "get") do %>
+            Post:<%= text_field_tag "post" %><br><br>
+            <%= submit_tag "Add Post",class: "btn btn-success" %>
+          <% end %>   
+          </center>
+      </div>
+</div>
+<% if !@posts.empty? %>
+    <% @posts.each do |post| %>
+        <div class="container">
+            <div class= "newone" >
+              <center>
+                <h7>post</h7><br>
+                <%= post.text %><br>
+                <% if !post.comments.empty? %>
+                <h6><center>comments</center></h6>
+                <% post.comments.reverse.each do |comment| %>
+                    <% @user = User.find(comment.user_id) %>
+                    comment:<%= comment.text %><br>
+                    commented by:<b><%= @user.first_name %></b><br><br>
+                  <% end %>
+                <% end %>
+                </center>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+<% end %>
+<style >
+  .newone{
+    border: 1px solid #eee;
+  padding: 20px;
+  }
+</style>
+
+

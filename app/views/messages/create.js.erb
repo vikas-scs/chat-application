@@ -1,0 +1,5 @@
+console.log("coming here")
+var conversation = $('#conversations-list').find("[data-conversation-id='" + "<%= @conversation.id %>" + "']");
+console.log(conversation)
+
+conversation.find('#textarea').val('');

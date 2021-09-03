@@ -1,0 +1,57 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container register-form">
+  <div class="form">
+    <div class="note">
+        <p>Confirmation Email</p>
+    </div>
+
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Your Email *",class: "form-control" %>
+                            </div>
+                    </div>
+                    <%= f.submit "Send", class: "btnSubmit" %> 
+                </div>
+                <% end %>
+
+            </div>
+</div>
+<%= render "devise/shared/links" %>
+<style type="text/css">
+  .note
+{
+    text-align: center;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+}
+.form-content
+{
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    border-radius:1.5rem;
+}
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+}
+</style>

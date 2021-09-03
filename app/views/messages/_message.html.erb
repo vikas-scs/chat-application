@@ -1,0 +1,38 @@
+    <div class="<%= user.id == message.user_id ? 'message-sent' : 'message-received' %> container"  >
+     <%= message.content %><br>
+     <span class="<%= user.id == message.user_id ? 'time-left' : 'time-right' %>"><%= message.created_at.strftime("%H:%M") %></span>
+    </div>
+<style>
+	.message-sent {
+  padding-right: 80%
+  position: relative;
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  margin: 5px 20px;
+  padding: 10px;
+  float: left;
+  text-align: left;
+}
+
+.message-received {
+  background-color: #F1F0F0;
+  border-color: #EEEEEE;
+  margin: 5px 20px;
+  padding: 10px;
+  float: right;
+  text-align: left;
+
+  
+}
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+   padding: 7px;
+  float: right;
+  color: #999;
+}
+
+</style>

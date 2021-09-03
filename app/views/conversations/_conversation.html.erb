@@ -1,0 +1,35 @@
+<li>
+  <div class="panel panel-default" data-conversation-id="<%= conversation.id %>">
+    <div class="panel-heading">
+      <%= link_to conversation.opposed_user(user).first_name, '', class: 'toggle-window' %>
+      <% if conversation.opposed_user(user).profile.present? %>
+                    <%= image_tag conversation.opposed_user(user).profile,  style: 'height:3vw;width:3vw;margin-bottom:6px;', class: "rounded-circle" %> 
+               <% end %>
+      <%= link_to "x", close_conversation_path(conversation), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
+    </div>
+
+    <div class="panel-body" style="display: none;">
+      <div class="messages-list">
+        <ul>
+          <%= render 'conversations/conversation_content', messages: conversation.messages, user: user %>
+        </ul>
+      </div>
+      <br>
+      <div class="container", style="align-content: center">
+       <%= form_for [conversation,conversation.messages.new],remote: true  do |f| %>
+                    <%= f.hidden_field "user_id", value: user.id %>
+                    <%= f.text_area "content", id: "textarea" %>
+                    <%= submit_tag "send",class: "btn btn-success" %>
+        <% end %><br>
+      </div>
+    </div>
+  </div>
+</li>
+<style>
+  .messages-list {
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+</style>

@@ -1,0 +1,29 @@
+ <br>
+ <br>
+ <br>
+ <div class="row">
+ 	<div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Friends List</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @users.each do |user| %>
+            <% if user.profile.present? %>
+                    <%= image_tag user.profile,  style: 'height:5vw;width:5vw;margin-bottom:10px;', class: "rounded-circle" %> 
+               <% end %><br>
+            <%= user.first_name %>:<%= link_to "Message", conversations_path(user_id: user), remote: true, method: :post %><br>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+  </div>  
+</div>

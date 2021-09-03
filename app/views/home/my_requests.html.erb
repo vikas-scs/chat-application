@@ -1,0 +1,45 @@
+<div class="featured-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>Friends Requests</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="container">
+      
+        <div class="row">
+          <% if @friends.empty? %>
+             <center><h4>No Requests Yet</h4></center>
+          <% else %> 
+
+           <% @friends.each do |friend| %>
+            <% @fr.each do |fr| %>
+              <% if fr.user_id != current_user.id %>
+               <div class="col-md-2 featured-items">
+                 <% if friend.profile.present? %>
+                    <%= image_tag friend.profile,  style: 'height:10vw;width:10vw;margin-bottom:20px;', class: "rounded-circle" %> 
+                 <b><%= friend.first_name %></b><br>
+                <% end %>
+                <%= form_tag(respond_request_path, :method => "get") do %>
+                    <%= hidden_field_tag "friend_id",friend.id %>
+                    <%= hidden_field_tag "status","accept" %>
+                    <%= submit_tag "accept",class: "btn btn-success" %>
+                <% end %><br>
+                <%= form_tag(respond_request_path, :method => "get") do %>
+                    <%= hidden_field_tag "friend_id",friend.id %>
+                    <%= hidden_field_tag "status","reject" %>
+                    <%= submit_tag "accept",class: "btn btn-danger" %>
+                <% end %><br>
+          </div>
+          <% end %>
+          <% end %>
+          <% end %>
+          <% end %>
+        </div>
+        
+</div>

@@ -1,0 +1,35 @@
+<% if user_signed_in? %>
+<div class="featured-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>Add Friends</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div class="container">
+        <div class="row">
+          <% if @users.empty? %>
+            <center><h3>No Users</h3></center>
+          <% else %>
+            <% @users.each do |friend| %>
+            <div class="col-md-2 featured-items">
+            <% if friend.id != current_user.id %>
+               <% if friend.profile.present? %>
+                    <%= image_tag friend.profile,  style: 'height:10vw;width:10vw;margin-bottom:20px;', class: "rounded-circle" %> 
+               <% end %><br>
+                 <b><%= friend.first_name %></b><br>
+                 <%= link_to 'send request', send_request_path(id: friend.id) %>
+               <% end %>
+          </div>
+          <% end %>
+          <% end %>
+        </div>
+        
+</div>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="featured-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>My Friends</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="container">
+      
+        <div class="row">
+          <% @friends.each do |friend| %>
+          <div class="col-md-2 featured-items">
+            <% if friend.id != current_user.id %>
+               <% if friend.profile.present? %>
+                    <%= image_tag friend.profile,  style: 'height:10vw;width:10vw;margin-bottom:20px;', class: "rounded-circle" %> 
+               <% end %><br>
+                 <b><%= friend.first_name %></b><br>
+                 <p>status: </p>
+                 
+                 <b><%= link_to 'View posts', show_post_path(id: friend.id) %></b><br>
+                 <b><%= link_to 'Unfriend', unfriend_path(id: friend.id) %></b>
+               <% end %>
+          </div>
+          <% end %>
+        </div>
+        
+</div>

@@ -1,0 +1,61 @@
+<br>
+<br>
+<br>
+<br>
+<div class="container register-form">
+  <div class="form">
+    <div class="note">
+        <p>Sign in</p>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Your Email *",class: "form-control" %>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <%= f.password_field :password, autocomplete: "new-password",placeholder: "Your password *",class: "form-control" %>
+                            </div>
+                        </div>
+                    </div>
+                    <%= f.submit "Sign In", class: "btnSubmit" %>
+                    
+                </div>
+                <% end %>
+
+            </div>
+</div>
+        <center><%= render "devise/shared/links" %></center>
+<style type="text/css">
+  .note
+{
+    text-align: center;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #0000ffff;
+    font-weight: bold;
+    line-height: 80px;
+}
+.form-content
+{
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    border-radius:1.5rem;
+}
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+}
+</style>

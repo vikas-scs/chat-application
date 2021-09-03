@@ -1,0 +1,41 @@
+<br>
+<br>
+<br>
+
+<center><h7><%= @friend.first_name %> posts </h7></center>
+<% if @posts.empty? %>
+    <center><h4>No Posts Yet!</h4></center>
+<% else %>
+<% @posts.each do |post| %>
+        <div class="container">
+            <div class= "newone" >
+              <center>
+                <h7>post</h7><br>
+                <%= post.text %><br>
+                <% if !post.comments.empty? %>
+                <h6><center>comments</center></h6>
+                  <% post.comments.reverse.each do |comment| %>
+                    <% @user = User.find(comment.user_id) %>
+                    comment:<%= comment.text %><br>
+                    commented by:<b><%= @user.first_name %></b><br><br>
+                  <% end %>
+                <% end %>
+                
+                <%= form_tag(commet_path, :method => "get") do %>
+                    Comment:<%= text_field_tag "comment" %><br>
+                    <%= hidden_field_tag "post_id", post.id %>
+                    <%= hidden_field_tag "friend_id", @friend.id %>
+                    <%= submit_tag "comment",class: "btn btn-info" %>
+                <% end %>
+                </center>
+            </div>
+        </div>
+ <% end %>
+ <% end %>
+ <style >
+  .newone{
+    border: 1px solid #eee;
+  padding: 20px;
+  }
+</style>
+

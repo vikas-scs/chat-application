@@ -1,0 +1,2 @@
+class ConversationsUser < ApplicationRecord
+end
